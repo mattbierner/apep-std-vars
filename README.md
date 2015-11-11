@@ -46,18 +46,21 @@ const name = pep_vars.store('name', pep.choice('Alice', 'Bob'))
 
 const p = pep.seq(
     'Affirmative, ', name '. I read you. ',
-    'Im sorry, ', na,e, ". Im afraid I cant do that.");
+    'Im sorry, ', name, ". Im afraid I cant do that.");
 
-p.run() === "Affirmative, Alice. I read you. Im sorry Alice. Im afraid I cant do that."
 p.run() === "Affirmative, Dave. I read you. Im sorry Dave. Im afraid I cant do that."
+p.run() === "Affirmative, Alice. I read you. Im sorry Alice. Im afraid I cant do that."
 ```
 
-The function always stores value as strings. The output of multiple
-yielding generators are joined together into a single string value, which 
-is yielded once. 
+Always stores value as strings. The output of multiple
+yielding generators are joined together into a single string value. `store` yields this combined value as its result.
 
 ```js
-const v = pep_vars.store('joined_var', pep.seq(pep.lit(1.2), pep.lit({}), pep.lit(null)));
+const v = pep_vars.store('joined_var',
+    pep.seq(
+        pep.lit(1.2),
+        pep.lit({}),
+        pep.lit(null)));
 
 Array.from(p) === ['1.2[Object object]null'];
 ```
