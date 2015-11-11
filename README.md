@@ -62,7 +62,9 @@ const v = pep_vars.store('joined_var',
         pep.lit({}),
         pep.lit(null)));
 
-Array.from(p) === ['1.2[Object object]null'];
+const p = pep.seq(v, v)
+
+Array.from(p) === ['1.2[Object object]null', '1.2[Object object]null'];
 ```
 
 Use `storeCombined` if you need to store non-string values.
