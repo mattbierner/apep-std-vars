@@ -3,13 +3,13 @@
 Common generators and combinators for working with variables in [Apep Javascript text generation library][apep].
 
 ## Usage
-```
+```sh
 $ npm install apep-std-vars
 ```
 
 You can either use `apep-std-vars` as its own include:
 
-```
+```js
 const pep = require('apep');
 const pep_vars = require('apep-std-vars');
 
@@ -18,7 +18,7 @@ const p = pep_vars.store(...);
 
 Or by extending an Apep instance:
 
-```
+```js
 let pep = require('apep');
 pep = require('apep-std-vars')(pep);
 
