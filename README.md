@@ -34,6 +34,36 @@ Delete a variable.
 
 * `name` - Variable name.
 
+#### `setFrom(name, generator)`
+Set the variable `name` to the result of generator.
+
+* `name` - Variable name.
+* `generator` -  Generator run to produce the value.
+
+```js
+const name = pep_vars.setFrom('name', pep.choice('Alice', 'Bob'))
+
+const p = pep.seq(
+    'Affirmative, ', name '. I read you. ',
+    'Im sorry, ', pep.get('name'), ". Im afraid I cant do that.");
+
+p.run() === "Affirmative, Dave. I read you. Im sorry Dave. Im afraid I cant do that."
+p.run() === "Affirmative, Alice. I read you. Im sorry Alice. Im afraid I cant do that."
+```
+
+Always stores value as strings. The output of multiple
+yielding generators are joined together into a single string value. `setFrom` yields this combined value as its result.
+
+use `setFromCombined` if you need to store non-string values.
+
+#### `setFromCombined(f, z, name, generator)`
+Same behavior as `setFrom`, but combines multiple yielded values with an accumulator function.
+
+* `f` - Accumulator function to reduce multiple yields from `generator` to a single value.
+* `z` - Initial value for accumulator.
+* `name` - Variable name.
+* `generator` - Generator run to produce the value.
+
 #### `store(name, generator)`
 Get the currently stored value of a variable or compute it with a generator.
 
@@ -71,7 +101,7 @@ Use `storeCombined` if you need to store non-string values.
 
 
 #### `storeCombined(f, z, name, generator)`
-Same behavior as store, but combines multiple yielded values with an accumulator function.
+Same behavior as `store`, but combines multiple yielded values with an accumulator function.
 
 * `f` - Accumulator function to reduce multiple yields from `generator` to a single value.
 * `z` - Initial value for accumulator.

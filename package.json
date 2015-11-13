@@ -1,6 +1,6 @@
 {
     "name": "apep-std-vars",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "Common helpers for working with variables in Apep.",
     "author": "Matt Bierner",
     "license": "MIT",
